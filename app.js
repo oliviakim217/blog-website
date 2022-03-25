@@ -49,20 +49,19 @@ app.post("/compose", function(req, res) {
 });
 
 
-// Show each post
+// Show each post on a separate page
 app.get("/posts/:postName", function(req, res) {
-  const requestedTitle = _.lowerCase(req.params.postName);
-  console.log(requestedTitle);
+  const requestedTitle = _.lowerCase(req.params.postName); //Grab the href from home.ejs
+  console.log(req.params);
   
   posts.forEach(function(post) {
     if (_.lowerCase(post.title) === requestedTitle) {
       res.render("post", {
         postTitle: post.title,
         postContent: post.content
-      })
+      });
     }
   });
-  
 });
 
 
